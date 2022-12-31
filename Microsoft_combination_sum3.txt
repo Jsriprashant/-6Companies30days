@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<vector<int>>subsets1;
+
+    void generate(vector<int>&subsets , int i , int k , int n){
+        if(k == subsets.size()&& n==0){
+            subsets1.push_back(subsets);
+            return;
+        }
+
+        if(i>=10 || (n!=0 && i>n))
+            return;
+        generate(subsets , i+1 , k ,n);
+        subsets.push_back(i);
+        generate(subsets , i+1 , k , n-i);
+        subsets.pop_back();
+    }
+    
+    vector<vector<int>> combinationSum3(int k, int n) {
+
+        vector<int>subsets ;
+        generate(subsets , 1 , k , n);
+        return subsets1;
+        
+    }
+};
