@@ -1,0 +1,39 @@
+class Solution {
+public:
+    string getHint(string secret, string guess) {
+
+        vector<int>fs (10 , 0);
+        vector<int>fg (10 , 0);
+        int cows =0 ;
+        int bulls =0;
+        int t;
+
+        for(int i =0 ;i<secret.size() ; i++){
+            if(secret[i] == guess[i])
+                bulls+=1;
+            else{
+                fs[secret[i] - '0']+=1;
+                fg[guess[i] - '0']+=1;
+            }
+        }
+
+        for(int i =0 ; i<10 ;i++){
+            t=min(fs[i] , fg[i]);
+            cows = cows+t;
+        }
+
+        string bull = to_string(bulls);
+        string cow =  to_string(cows);
+
+        string answer = bull + "A" + cow +"B";
+
+        return answer;
+
+        
+        
+
+
+
+
+    }
+};
